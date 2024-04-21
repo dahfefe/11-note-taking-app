@@ -19,14 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-// GET Route for notes page
+// GET route for notes page
 app.get('/', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
-);
-
-// GET Route for feedback page
-app.get('/api/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/pages/feedback.html'))
 );
 
 // Wildcard route to direct users to a 404 page
