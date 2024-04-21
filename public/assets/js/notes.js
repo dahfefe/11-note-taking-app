@@ -49,7 +49,7 @@ const getNotes = () =>
   .then((data) => data)
   .catch((error) => {
     console.error('Error:', error);
-  });
+  }); 
 
 const saveNote = (note) =>
   fetch('/api/notes', {
@@ -68,6 +68,8 @@ const saveNote = (note) =>
     console.error('Error:', error);
   });
 
+/*
+
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
@@ -75,6 +77,8 @@ const deleteNote = (id) =>
       'Content-Type': 'application/json'
     }
   });
+
+*/
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
@@ -98,13 +102,16 @@ const renderActiveNote = () => {
 const handleNoteSave = () => {
   const newNote = {
     title: noteTitle.value,
-    text: noteText.value
+    text: noteText.value,
+    id: uuid()
   };
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
   });
 };
+
+/*
 
 // Delete the clicked note
 const handleNoteDelete = (e) => {
@@ -215,3 +222,5 @@ if (window.location.pathname === '/notes') {
 }
 
 getAndRenderNotes();
+
+*/

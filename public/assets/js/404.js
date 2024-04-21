@@ -1,3 +1,4 @@
+
 // JS for the 404 page
 const goBackBtn = document.getElementById('back');
 
@@ -9,3 +10,4 @@ const goBack = (e) => {
 };
 
 goBackBtn.addEventListener('click', goBack);
+
