@@ -1,4 +1,5 @@
-const uuid = require('./helpers/uuid');
+
+// const uuid = require('./helpers/uuid');
 
 let noteForm;
 let noteTitle;
@@ -35,11 +36,9 @@ const noteTextContent = document.querySelector('.note-textarea').value.trim();
 
 // activeNote is used to keep track of the note in the textarea
 const activeNote = {
-/*  
   title: noteTitleInput,
   text: noteTextContent,
-  id: uuid(),
-*/
+  // id: uuid(),
 };
 
 const getNotes = () =>
@@ -66,15 +65,14 @@ const saveNote = (note) =>
     },
     body: JSON.stringify(note)
   })
-  .then((response) => response.json())
-  .then((data) => {
-    alert(data);
-    // createCard(note);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-
+    .then((response) => response.json())
+    .then((data) => {
+      alert(data);
+      // createCard(note);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -94,8 +92,8 @@ const renderActiveNote = () => {
     noteText.setAttribute('readonly', true);
     noteTitle.value = activeNote.title;
     noteText.value = activeNote.text;
-  } else {
-    hide(newNoteBtn);
+  } else {     // in what scenario will the activeNote not have an id??
+    hide(newNoteBtn);   
     noteTitle.removeAttribute('readonly');
     noteText.removeAttribute('readonly');
     noteTitle.value = '';
@@ -107,7 +105,7 @@ const handleNoteSave = () => {
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
-    id: uuid()
+    // id: uuid()
   };
   saveNote(newNote).then(() => {
     getAndRenderNotes();
@@ -225,3 +223,4 @@ if (window.location.pathname === '/notes') {
 }
 
 getAndRenderNotes();
+

@@ -18,19 +18,19 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-// // GET route for homepage
-// app.get('/', (req, res) =>
-//   res.sendFile(path.join(__dirname, '/public/index.html'))
-// );
+// GET route for homepage
+app.get('/', (req, res) =>
+  res.sendFile(path.join(__dirname, '/public/index.html'))
+);
 
 // This view route is a GET route for notes entry page
-app.get('/', (req, res) =>
+app.get('/api', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
 // This API route is a GET Route for retrieving all the notes (THIS IS AN ENDPOINT!)
 app.get('/api/notes', (req, res) => {
-  console.info(`${req.method} request received for tips`);
+  console.info(`${req.method} request received for notes`);
   readFromFile('./db/notes.json').then((data) => res.json(JSON.parse(data)));  // this is what is actually fetching the data
 });
 
