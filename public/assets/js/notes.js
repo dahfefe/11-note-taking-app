@@ -25,8 +25,18 @@ const hide = (elem) => {
   elem.style.display = 'none';
 };
 
+// Get the value of the tip and save it to a variable
+const noteTitleInput = document.querySelector('.note-title').value;
+
+// get the value of the username and save it to a variable
+const noteTextContent = document.querySelector('.note-textarea').value.trim();
+
 // activeNote is used to keep track of the note in the textarea
-let activeNote = {};
+const activeNote = {
+  title: noteTitleInput,
+  text: noteTextContent,
+  id: uuid(),
+};
 
 const getNotes = () =>
   fetch('/api/notes', {
