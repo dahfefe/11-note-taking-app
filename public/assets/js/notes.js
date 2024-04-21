@@ -1,3 +1,5 @@
+const uuid = require('./helpers/uuid');
+
 let noteForm;
 let noteTitle;
 let noteText;
@@ -25,17 +27,19 @@ const hide = (elem) => {
   elem.style.display = 'none';
 };
 
-// Get the value of the tip and save it to a variable
+// Get the value of the note and save it to a variable
 const noteTitleInput = document.querySelector('.note-title').value;
 
-// get the value of the username and save it to a variable
+// get the value of the title and save it to a variable
 const noteTextContent = document.querySelector('.note-textarea').value.trim();
 
 // activeNote is used to keep track of the note in the textarea
 const activeNote = {
+/*  
   title: noteTitleInput,
   text: noteTextContent,
   id: uuid(),
+*/
 };
 
 const getNotes = () =>
@@ -49,6 +53,9 @@ const getNotes = () =>
   .then((data) => data)
   .catch((error) => {
     console.error('Error:', error);
+
+  console.log(response);
+  console.log(data);
   }); 
 
 const saveNote = (note) =>
@@ -68,7 +75,6 @@ const saveNote = (note) =>
     console.error('Error:', error);
   });
 
-/*
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -77,8 +83,6 @@ const deleteNote = (id) =>
       'Content-Type': 'application/json'
     }
   });
-
-*/
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
@@ -110,8 +114,6 @@ const handleNoteSave = () => {
     renderActiveNote();
   });
 };
-
-/*
 
 // Delete the clicked note
 const handleNoteDelete = (e) => {
@@ -212,7 +214,8 @@ const renderNoteList = async (notes) => {
 };
 
 // Gets notes from the db and renders them to the sidebar
-const getAndRenderNotes = () => getNotes().then(renderNoteList);
+   const getAndRenderNotes = () => getNotes().then(renderNoteList);
+// const getAndRenderNotes = () => getNotes().then((data) => data.forEach((note) => renderNoteList(note)));
 
 if (window.location.pathname === '/notes') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
@@ -222,5 +225,3 @@ if (window.location.pathname === '/notes') {
 }
 
 getAndRenderNotes();
-
-*/
