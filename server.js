@@ -20,14 +20,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // GET route for notes page
-app.get('/', (req, res) =>
+app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
 // Wildcard route to direct users to a 404 page
 // NOTE: the order this code matters!!! If you put it above line #16, it will catch all url inputs (which are strings)
 app.get('*', (req, res) =>    //   this * matches all strings that do not match line #16,21,26 (or more specifically, strings that precede this code)
-  res.sendFile(path.join(__dirname, 'public/pages/404.html'))
+  res.sendFile(path.join(__dirname, 'public/404.html'))
 );
 
 app.listen(PORT, () =>
