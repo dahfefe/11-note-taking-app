@@ -58,6 +58,14 @@ const saveNote = (note) =>
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(note)
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    alert(data);
+    // createCard(note);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
   });
 
 const deleteNote = (id) =>
