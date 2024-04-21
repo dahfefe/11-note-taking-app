@@ -2,9 +2,8 @@ const express = require('express');
 const path = require('path');
 const { clog } = require('./middleware/clog');
 const fs = require('fs');
-// Helper method for generating unique ids
-const api = require('./public/assets/js/index');
-const uuid = require('./helpers/uuid');
+// Helper functions for reading and writing to the JSON file
+const { readFromFile, readAndAppend } = require('./helpers/fsUtils');
 
 const PORT = process.env.PORT || 3001;
 
@@ -16,19 +15,24 @@ app.use(clog);
 // Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', api);
 
 app.use(express.static('public'));
 
-// GET route for homepage
-app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))
-);
+// // GET route for homepage
+// app.get('/', (req, res) =>
+//   res.sendFile(path.join(__dirname, '/public/index.html'))
+// );
 
-// GET route for notes page
-app.get('/api/notes', (req, res) =>
+// This view route is a GET route for notes entry page
+app.get('/', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
+
+// This API route is a GET Route for retrieving all the notes (THIS IS AN ENDPOINT!)
+app.get('/api/notes', (req, res) => {
+  console.info(`${req.method} request received for tips`);
+  readFromFile('./db/notes.json').then((data) => res.json(JSON.parse(data)));  // this is what is actually fetching the data
+});
 
 // Wildcard route to direct users to a 404 page
 // NOTE: the order this code matters!!! If you put it above line #16, it will catch all url inputs (which are strings)
