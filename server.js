@@ -4,6 +4,7 @@ const { clog } = require('./middleware/clog');
 const fs = require('fs');
 // Helper functions for reading and writing to the JSON file
 const { readFromFile, readAndAppend } = require('./helpers/fsUtils');
+const api = require('./routes/indexRouter');
 
 const PORT = process.env.PORT || 3001;
 
@@ -15,6 +16,7 @@ app.use(clog);
 // Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/api', api);
 
 app.use(express.static('public'));
 
