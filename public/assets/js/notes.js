@@ -30,6 +30,8 @@ const newNoteBtn = document.querySelector('.new-note');
 const clearBtn = document.querySelector('.clear-btn');
 const noteList = document.querySelectorAll('.list-container .list-group');
 
+console.log("Javascript is working!!!")
+
 // Show an element
 const show = (elem) => {
   elem.style.display = 'inline';
@@ -143,37 +145,30 @@ const deleteNote = (id) =>
 
 getNotes().then((data) => data.forEach((note) => createLi(note)));
 
-// Function to validate the tips that were submitted
-const validateTip = (newTip) => {
-  const { username, topic, tip } = newTip;
+// Function to validate the notes that were submitted
+const validateNote = (newNote) => {
+  const { title, text } = newNote;
 
   // Object to hold our error messages until we are ready to return
   const errorState = {
-    username: '',
-    tip: '',
-    topic: '',
+    title: '',
+    text: '',
   };
 
-  // Bool value if the username is valid
-  const utest = username.length >= 4;
+  // Bool value if the title is valid
+  const utest = title.length >= 0;
   if (!utest) {
-    errorState.username = 'Invalid username!';    
+    errorState.title = 'Invalid title!';    
   }
 
-  // Bool value to see if the tip being added is at least 15 characters long
-  const tipContentCheck = tip.length > 15;
-  if (!tipContentCheck) {
-    errorState.tip = 'Tip must be at least 15 characters';
-  }
-
-  // Bool value to see if the topic is either UX or UI
-  const topicCheck = topic.includes('UX' || 'UI');   
-  if (!topicCheck) {
-    errorState.topic = 'Topic not relevant to UX or UI';
+  // Bool value to see if the note being added is at least 2 characters long
+  const textContentCheck = text.length > 2;
+  if (!textContentCheck) {
+    errorState.text = 'Note must be at least 2 characters';
   }
 
   const result = {
-    isValid: !!(utest && tipContentCheck && topicCheck),  // This "!!" is syntax sugar, somewhat refers to "not not"
+    isValid: !!(utest && tipContentCheck),  // This "!!" is syntax sugar, somewhat refers to "not not"
     errors: errorState,                                   // main point: we want to ensure their text within each variable
   };
 
@@ -192,49 +187,32 @@ const showErrors = (errorObj) => {
   });
 };
 
-// Helper function to send a POST request to the diagnostics route
-const submitDiagnostics = (submissionObj) => {
-  fetch('/api/diagnostics', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(submissionObj),
-  })
-    .then((response) => response.json())
-    .then(() => showErrors(submissionObj.errors))
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-};
-
 // Function to handle when a user submits the feedback form
 const handleFormSubmit = (e) => {
   e.preventDefault();
   console.log('Form submit invoked');
 
-  // Get the value of the tip and save it to a variable
-  const tipContent = document.getElementById('tipText').value;
+  // Get the value of the note title and save it to a variable
+  noteTitle = document.querySelector('.note-title').value.trim();
 
-  // get the value of the username and save it to a variable
-  const tipUsername = document.getElementById('tipUsername').value.trim();
+  // Get the value of the note text and save it to a variable
+  noteText = document.querySelector('.note-textarea').value.trim();
 
-  // Create an object with the tip and username
-  const newTip = {
-    username: tipUsername,
-    topic: 'UX',
-    tip: tipContent,
+  // Create an object with the title and text
+  const newNote = {
+    title: noteTitle,
+    text: noteText,
   };
 
   // Run the tip object through our validator function
-  const submission = validateTip(newTip);
+  const submission = validateNote(newNote);
 
   // If the submission is valid, post the tip. Otherwise, handle the errors.
-  return submission.isValid ? postTip(newTip) : submitDiagnostics(submission);
+  return submission.isValid ? saveNote(newNote) : alert(submission);
 };
 
 // Listen for when the form is submitted
-tipForm.addEventListener('submit', handleFormSubmit);
+noteForm.addEventListener('submit', handleFormSubmit);
 
 
 // ORIGINAL CODE BELOW
