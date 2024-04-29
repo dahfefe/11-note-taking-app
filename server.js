@@ -7,6 +7,8 @@ const { readFromFile } = require('./helpers/fsUtils');
 // const { readFromFile, readAndAppend, writeToFile } = require('./helpers/fsUtils');
 const api = require('./routes');
 
+//* Note: this says "looking for an environment variable called 'port'" and, if not found, it will direct to port 3001
+//* this allows heroku to set a port number for us
 const PORT = process.env.PORT || 3001;
 
 const app = express();

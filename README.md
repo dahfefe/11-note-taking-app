@@ -14,6 +14,8 @@ This note-taking application allows users to save notes to a page for online tas
 
 This friendly, easy-to-use app is a great tool for anyone to simply write, log, and store multiple to-do's, tasks, or reminders. 
 
+Deployed Application on Heroku: https://arcane-plateau-91110-cdcceaae4cc7.herokuapp.com/
+
 GitHub repo link: https://github.com/dahfefe/11-note-taking-app
 
 ## Motivation
