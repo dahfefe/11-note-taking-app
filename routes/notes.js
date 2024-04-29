@@ -7,6 +7,7 @@ const {
 } = require('../helpers/fsUtils');
 
 // GET Route for retrieving all the notes
+// * We only need "/" here because "/api" is specified in server.js and "/notes" is specified in index.js
 notes.get('/', (req, res) => {
   readFromFile('./db/notes.json').then((data) => res.json(JSON.parse(data)));
 });
@@ -20,7 +21,7 @@ notes.get('/:note_id', (req, res) => {
       const result = json.filter((note) => note.id === noteId);
       return result.length > 0
         ? res.json(result)
-        : res.json('No tip with that ID');
+        : res.json('No note with that ID');
     });
 });
 
@@ -31,7 +32,7 @@ notes.delete('/:note_id', (req, res) => {
     .then((data) => JSON.parse(data))
     .then((json) => {
       console.log(json);
-      // Make a new array of all tips except the one with the ID provided in the URL
+      // Make a new array of all notes except the one with the ID provided in the URL
       const result = json.filter((note) => note.id !== noteId);
 
       // Save that array to the filesystem
@@ -43,6 +44,7 @@ notes.delete('/:note_id', (req, res) => {
 });
 
 // POST Route for a new note
+// * We only need "/" here because "/api" is specified in server.js and "/notes" is specified in index.js
 notes.post('/', (req, res) => {
   console.log(req.body);
 
