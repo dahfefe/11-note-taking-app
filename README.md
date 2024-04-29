@@ -1,128 +1,70 @@
-# 11 Express.js: Note Taker
-
-## Your Task
-
-Your assignment is to modify starter code to create an application called Note Taker that can be used to write and save notes. This application will use an Express.js back end and will save and retrieve note data from a JSON file.
-
-The application’s front end has already been created. It's your job to build the back end, connect the two, and then deploy the entire application to Heroku.
+# 11 Note-Taking Application for Everyone  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## User Story
 
 ```
-AS A small business owner
+AS AN everyday Joe
 I WANT to be able to write and save notes
 SO THAT I can organize my thoughts and keep track of tasks I need to complete
 ```
 
-## Acceptance Criteria
+## Description
 
-```
-GIVEN a note-taking application
-WHEN I open the Note Taker
-THEN I am presented with a landing page with a link to a notes page
-WHEN I click on the link to the notes page
-THEN I am presented with a page with existing notes listed in the left-hand column, plus empty fields to enter a new note title and the note’s text in the right-hand column
-WHEN I enter a new note title and the note’s text
-THEN a "Save Note" button and a "Clear Form" button appear in the navigation at the top of the page
-WHEN I click on the Save button
-THEN the new note I have entered is saved and appears in the left-hand column with the other existing notes and the buttons in the navigation disappear
-WHEN I click on an existing note in the list in the left-hand column
-THEN that note appears in the right-hand column and a "New Note" button appears in the navigation
-WHEN I click on the "New Note" button in the navigation at the top of the page
-THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column and the button disappears
-```
+This note-taking application allows users to save notes to a page for online task/reminder organization.
 
-## Mock-Up
+This friendly, easy-to-use app is a great tool for anyone to simply write, log, and store multiple to-do's, tasks, or reminders. 
 
-The following GIF shows the web application's appearance and functionality:
+GitHub repo link: https://github.com/dahfefe/11-note-taking-app
 
-![Existing notes are listed in the left-hand column with empty fields on the right-hand side for the new note’s title and text.](./Assets/11-express-homework-demo.gif)
+## Motivation
+  
+To enable the everyday user to have a simple, online tool where they can write, log with delete functionality, and organize needed notes throughout their day/week. 
 
-## Getting Started
+## What I Learned
+  
+I became better familiarized with API routing in addition to storing user input data onto a JSON file that acts as a database storage for user input. 
 
-On the back end, the application should include a `db.json` file that will be used to store and retrieve notes using the `fs` module.
+## Table of Contents
 
-The following HTML routes should be created:
+- [Usage](#usage)
+- [License](#license)
+- [Features](#features)
+- [How to Contribute](#contributing)
+- [Any Questions?](#questions)
 
-* `GET /notes` should return the `notes.html` file.
+## Usage
 
-* `GET *` should return the `index.html` file.
+To write, store, and delete notes (containing both a title and text section). 
 
-The following API routes should be created:
+## Screenshot 
 
-* `GET /api/notes` should read the `db.json` file and return all saved notes as JSON.
+Iniitial home landing page:
 
-* `POST /api/notes` should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client. You'll need to find a way to give each note a unique id when it's saved (look into npm packages that could do this for you).
+![image](./public/images/1.png)
 
-## Bonus
+Page with note-taking application: 
 
-You haven’t learned how to handle DELETE requests, but this application offers that functionality on the front end. As a bonus, try to add the DELETE route to the application using the following guideline:
+![image](./public/images/2.png)
 
-* `DELETE /api/notes/:id` should receive a query parameter that contains the id of a note to delete. To delete a note, you'll need to read all notes from the `db.json` file, remove the note with the given `id` property, and then rewrite the notes to the `db.json` file.
+## License [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Grading Requirements
+This project is licensed under the [MIT License](https://opensource.org/license/mit). You can find the license details in the LICENSE file included in this repository.
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+## Features
+  
+Dependency: [Express package](https://www.npmjs.com/package/express)
 
-This Challenge is graded based on the following criteria:
+## Contributing
 
-### Technical Acceptance Criteria: 40%
+There are many ways in which you can participate in this project, for example:
 
-* Satisfies all of the preceding acceptance criteria plus the following:
+* [Submit bugs and feature requests](https://github.com/dahfefe/11-note-taking-app/issues), and help us verify as they are checked in
+* Review [source code changes](https://github.com/dahfefe/11-note-taking-app/pulls)
+* Review the [documentation](https://github.com/microsoft/vscode-docs) and make pull requests for anything from typos to additional and new content
 
-  * Application front end must connect to an Express.js back end.
+## Questions
+  
+Link to My GitHub: https://github.com/dahfefe
 
-  * Application back end must store notes that have a unique id in a JSON file.
+If you should have any questions, you can contact me at the following email address: fsmunozteng@gmail.com
 
-  * Application must be deployed to Heroku.
-
-### Deployment: 36%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository contains application code.
-
-### Application Quality: 11%
-
-* Application console is free of errors.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality README file with description, screenshot, and link to deployed application.
-
-### Bonus: +10 Points
-
-Fulfilling the following can add up to 10 points to your grade. Note that the highest grade you can achieve is still 100:
-
-* Application allows users to delete notes.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository, with a unique name and a README describing the project.
-
-- - -
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
