@@ -13,6 +13,7 @@ notes.get('/', (req, res) => {
 });
 
 // GET Route for a specific note
+//* Note: we can view all JSON data for saved notes by searching on browser for pathway "/api/notes"
 notes.get('/:note_id', (req, res) => {
   const noteId = req.params.note_id;
   readFromFile('./db/notes.json')

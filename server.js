@@ -39,8 +39,9 @@ app.get('/api/notes', (req, res) => {
   readFromFile('./db/notes.json').then((data) => res.json(JSON.parse(data)));  // this is what is actually fetching the data
 });
 
+//* This will collect all searches ending in ".../[?]", not ".../notes/[?]"
 app.get('*', (req, res) => 
-  res.sendFile(path.join(__dirname, 'public/404.html'))
+  res.sendFile(path.join(__dirname, 'public/index.html'))
 );
 
 app.listen(PORT, () =>
