@@ -4,7 +4,7 @@ const {
   readFromFile,
   readAndAppend,
   writeToFile,
-} = require('./helpers/fsUtils');
+} = require('../helpers/fsUtils');
 
 // GET Route for retrieving all the notes
 notes.get('/', (req, res) => {
@@ -17,7 +17,7 @@ notes.get('/:note_id', (req, res) => {
   readFromFile('./db/notes.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
-      const result = json.filter((note) => note.note_id === noteId);
+      const result = json.filter((note) => note.id === noteId);
       return result.length > 0
         ? res.json(result)
         : res.json('No tip with that ID');
@@ -30,8 +30,9 @@ notes.delete('/:note_id', (req, res) => {
   readFromFile('./db/notes.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
+      console.log(json);
       // Make a new array of all tips except the one with the ID provided in the URL
-      const result = json.filter((note) => note.note_id !== noteId);
+      const result = json.filter((note) => note.id !== noteId);
 
       // Save that array to the filesystem
       writeToFile('./db/notes.json', result);
@@ -51,7 +52,7 @@ notes.post('/', (req, res) => {
     const newNote = {
       title,
       text,
-      note_id: uuidv4(),
+      id: uuidv4(),
     };
 
     readAndAppend(newNote, './db/notes.json');

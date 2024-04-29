@@ -4,7 +4,7 @@ const { clog } = require('./middleware/clog');
 const fs = require('fs');
 // Helper functions for reading and writing to the JSON file
 const { readFromFile, readAndAppend } = require('./helpers/fsUtils');
-const api = require('./routes/indexRouter');
+const api = require('./routes');
 
 const PORT = process.env.PORT || 3001;
 
@@ -26,7 +26,7 @@ app.get('/', (req, res) =>
 );
 
 // This view route is a GET route for notes entry page
-app.get('/api', (req, res) =>
+app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
