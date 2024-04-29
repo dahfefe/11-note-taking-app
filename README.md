@@ -36,7 +36,7 @@ I became better familiarized with API routing in addition to storing user input 
 
 To write, store, and delete notes (containing both a title and text section). 
 
-## Screenshot 
+## Screenshots 
 
 Iniitial home landing page:
 
